@@ -1,0 +1,8 @@
+/*To inport the main.css place this inport command on each jsp page
+<style type="text/css"> @import url("resources/css/main.css"); </style> */
+
+@import "bootstrap.css";
+@import "font-awesome.css";
+@import "morris-0.4.3.min.css";
+@import "sb-admin.css";
+@import "aran.css";
