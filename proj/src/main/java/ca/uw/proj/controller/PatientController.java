@@ -90,7 +90,7 @@ public class PatientController {
         User u = (User) request.getSession().getAttribute("user");
         String role = (String) request.getSession().getAttribute("role");
 
-        Patient p = patientService.getPatient(u);
+        Patient p = patientService.getPatientByUser(u);
 
         ModelAndView m = new ModelAndView();
         m.addObject("role", role);
@@ -105,7 +105,7 @@ public class PatientController {
         User u = (User) request.getSession().getAttribute("user");
         String role = (String) request.getSession().getAttribute("role");
 
-        Patient p = patientService.getPatient(u);
+        Patient p = patientService.getPatientByUser(u);
 
         ModelAndView m = new ModelAndView("patient-info-update-form","patientUpdateInfoView",p);
         m.addObject("role", role);
@@ -121,7 +121,7 @@ public class PatientController {
         String role = (String) request.getSession().getAttribute("role");
 
         patient.setUser(u);
-        Patient p = patientService.getPatient(u);
+        Patient p = patientService.getPatientByUser(u);
         p.setHealthCardNo(patient.getHealthCardNo());
         p.setSocialInsNo(patient.getSocialInsNo());
         patientService.updatePatient(p);

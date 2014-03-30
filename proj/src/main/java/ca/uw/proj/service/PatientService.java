@@ -16,9 +16,19 @@ import java.util.List;
  */
 public interface PatientService {
     //comment
-    public Patient getPatient(User u);
-    public void updatePatient(Patient patient);
+    public void addPatient(Patient p);
+    public void removePatient(Patient p);
+    public void updatePatient(Patient p);
+
+    
+    public Patient getPatientByHealthCardNo(String healthCardNo);
+    public Patient getPatientBySIN(long SIN);
+    
+    public Patient getPatientByUserId(int id);
+    public Patient getPatientByUser(User u);
+    
+    public Patient getPatientByPatientId(Long id);
+    
+    
     public List<Patient> getAllPatients();
-    public Patient getPatient(Long id);
-    public Patient getPatient(String healthCardNo);
 }

@@ -136,7 +136,7 @@ public class AppointmentsController {
         }
 
         //failures
-        if (_p.getHealthCardNo() == null || _p.getHealthCardNo().isEmpty() || patientService.getPatient(_p.getHealthCardNo()) == null) {
+        if (_p.getHealthCardNo() == null || _p.getHealthCardNo().isEmpty() || patientService.getPatientByHealthCardNo(_p.getHealthCardNo()) == null) {
             errMessage = "Failed to find patient based on entered health card number";
             dpA = new DoctorPatientAppointment();
             dpA.setDoctor(new Staff());
@@ -166,7 +166,7 @@ public class AppointmentsController {
             return m;
         }
 
-        Patient p = patientService.getPatient(_p.getHealthCardNo());
+        Patient p = patientService.getPatientByHealthCardNo(_p.getHealthCardNo());
         Staff doctor = userService.findDoctor(userService.getUser(_d.getUser().getId()));
 
         if (p == null || doctor == null) {

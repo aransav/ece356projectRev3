@@ -26,17 +26,54 @@ public class PatientServiceImpl implements PatientService {
     PatientDAO patientDAO;
 
     @Override
-    public Patient getPatient(User u) {
-        if (patientDAO.getPatient("u", u) != null) {
-            return patientDAO.getPatient("u", u).get(0);
+    public void addPatient(Patient p) {
+        patientDAO.addPatient(p);
+    }
+
+    @Override
+    public void removePatient(Patient p) {
+        patientDAO.removePatient(p);
+    }
+
+    @Override
+    public void updatePatient(Patient p) {
+        patientDAO.updatePatient(p);
+    }
+
+    @Override
+    public Patient getPatientByHealthCardNo(String healthCardNo) {
+        List<Patient> list = patientDAO.getPatient("healthCardNo", healthCardNo);
+        if (list != null && !list.isEmpty()) {
+            return list.get(0);
         } else {
             return null;
         }
     }
 
     @Override
-    public void updatePatient(Patient patient) {
-        patientDAO.updatePatient(patient);
+    public Patient getPatientBySIN(long SIN) {
+        List<Patient> list = patientDAO.getPatient("SIN", SIN);
+        if (list != null && !list.isEmpty()) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public Patient getPatientByUserId(int id) {
+        List<Patient> list = getAllPatients();
+        for (Patient p : list) {
+            if (p.getUser().getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Patient getPatientByUser(User u) {
+        return getPatientByUserId(u.getId());
     }
 
     @Override
@@ -45,21 +82,14 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient getPatient(Long id) {
-        if (patientDAO.getPatient("id", id) != null) {
-            return patientDAO.getPatient("id", id).get(0);
-        } else {
-            return null;
+    public Patient getPatientByPatientId(Long id) {
+        List<Patient> list = getAllPatients();
+        for (Patient p : list) {
+            if (p.getId() == id) {
+                return p;
+            }
         }
-    }
-
-    @Override
-    public Patient getPatient(String healthCardNo) {
-        if (patientDAO.getPatient("healthCardNo", healthCardNo) != null) {
-            return patientDAO.getPatient("healthCardNo", healthCardNo).get(0);
-        } else {
-            return null;
-        }
+        return null;
     }
 
 }

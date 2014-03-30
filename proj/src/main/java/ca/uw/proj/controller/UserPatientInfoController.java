@@ -37,7 +37,7 @@ public class UserPatientInfoController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("user", u);
         modelAndView.addObject("role", role);
-        modelAndView.addObject("patient", patientService.getPatient(u));
+        modelAndView.addObject("patient", patientService.getPatientByUser(u));
 
         modelAndView.setViewName("patientInfo");
 
@@ -62,7 +62,7 @@ public class UserPatientInfoController {
         User u = (User) request.getSession().getAttribute("user");
         String role = (String) request.getSession().getAttribute("role");
 
-        Patient p = patientService.getPatient(u);
+        Patient p = patientService.getPatientByUser(u);
         p.setHealthCardNo(patient.getHealthCardNo());
         p.setSocialInsNo(patient.getSocialInsNo());
         patientService.updatePatient(p);
@@ -70,7 +70,7 @@ public class UserPatientInfoController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("user", u);
         modelAndView.addObject("role", role);
-        modelAndView.addObject("patient", patientService.getPatient(u));
+        modelAndView.addObject("patient", patientService.getPatientByUser(u));
 
         modelAndView.setViewName("patientInfo");
 
