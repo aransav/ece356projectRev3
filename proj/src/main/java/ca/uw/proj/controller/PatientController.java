@@ -39,6 +39,7 @@ public class PatientController {
         List<Appointment> list = appService.getAppointmentsForUser(u);
 
         ModelAndView m = new ModelAndView();
+        m.addObject("role", role);
         m.addObject("size", list.size());
         m.addObject("appList", list);
         m.setViewName("patient-app-view");
@@ -54,6 +55,7 @@ public class PatientController {
         List<VisitPrescription> list = visitService.getVisitPrescriptions(u);
 
         ModelAndView m = new ModelAndView();
+        m.addObject("role", role);
         m.addObject("size", list.size());
         m.addObject("precripList", list);
         m.setViewName("patient-prescrip-view");
@@ -70,6 +72,7 @@ public class PatientController {
 
 
         ModelAndView m = new ModelAndView();
+        m.addObject("role", role);
         m.addObject("size", list.size());
         m.addObject("vrList", list);
         m.setViewName("patient-vr-view");

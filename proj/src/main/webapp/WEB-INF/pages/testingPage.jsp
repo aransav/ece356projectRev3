@@ -13,14 +13,14 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <a href="patientAppView.html" >
+        <p><a href="patientAppView.html" >
             Click AppView
-        </a>
-        <a href="patientPrescripView.html" >
+        </a></p>
+        <p><a href="patientPrescripView.html" >
             Click prescriptionView
-        </a>
-        <a href="patientVisitRecordView.html" >
+        </a></p>
+        <p><a href="patientVisitRecordView.html" >
             Click Visit Record View
-        </a>
+        </a></p>
     </body>
 </html>
