@@ -45,6 +45,11 @@
             </a></p>
 
 
+        <p><a href="listPatients.html" >
+                listPatients
+            </a></p>
+
+
 
         <%--<p><a href="financialInfoView.html" >
                 Click Visit Financial Info View

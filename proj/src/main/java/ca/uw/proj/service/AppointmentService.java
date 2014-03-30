@@ -28,5 +28,6 @@ public interface AppointmentService {
     public List<Appointment> getAppointmentsForDate(java.sql.Date date);
     public List<Appointment> getAppointmentsForRange(java.sql.Date startDate, java.sql.Date endDate);
     public List<Appointment> getAppointmentsForUser(User u);
+    public Appointment getAppointment(int id);
     
 }

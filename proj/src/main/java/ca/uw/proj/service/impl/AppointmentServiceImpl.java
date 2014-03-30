@@ -45,7 +45,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     public void addAppointment(DoctorPatient doctorPatient, Date date, int schedLength, String procedureDesc, String comments, String status) {
         Appointment app = new Appointment();
         app.setDoctorPatient(doctorPatient);
-        app.setDateOfApp(date);
+        app.setDateOfApp(date.toString());
         app.setSchedLength(schedLength);
         app.setProcedureDesc(procedureDesc);
         app.setComments(comments);
@@ -122,6 +122,11 @@ public class AppointmentServiceImpl implements AppointmentService {
         
         return apps;
         
+    }
+
+    @Override
+    public Appointment getAppointment(int id) {
+        return appointmentDAO.getAppointment((long)id);
     }
 
 }

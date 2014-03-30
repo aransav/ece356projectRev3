@@ -62,7 +62,7 @@ public class DoctorPatientServiceImpl implements DoctorPatientService {
 
     @Override
     public List<DoctorPatient> findDoctorPatientsForPatient(Patient patient) {
-        return doctorPatientDAO.getDoctorPatient("Patient", patient);
+        return doctorPatientDAO.getDoctorPatient("patient", patient);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class DoctorPatientServiceImpl implements DoctorPatientService {
 
     @Override
     public List<DoctorPatient> findDoctorPatientsForDoctor(Staff doctor) {
-        return doctorPatientDAO.getDoctorPatient("Doctor", doctor);
+        return doctorPatientDAO.getDoctorPatient("doctor", doctor);
     }
 
     @Override

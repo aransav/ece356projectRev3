@@ -122,7 +122,7 @@ public class AppointmentDAOTest {
 
         a1 = new Appointment();
         a1.setDoctorPatient(dp1);
-        a1.setDateOfApp(new java.sql.Date(10000));
+        a1.setDateOfApp(new java.sql.Date(10000).toString());
         a1.setComments("none");
         a1.setProcedureDesc("a");
         a1.setSchedLength(10);
@@ -130,7 +130,7 @@ public class AppointmentDAOTest {
 
         a2 = new Appointment();
         a2.setDoctorPatient(dp2);
-        a2.setDateOfApp(new java.sql.Date(10000));
+        a2.setDateOfApp(new java.sql.Date(10000).toString());
         a2.setComments("none");
         a2.setProcedureDesc("a");
         a2.setSchedLength(10);

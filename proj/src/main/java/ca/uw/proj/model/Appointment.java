@@ -35,7 +35,7 @@ public class Appointment implements Serializable {
     private DoctorPatient doctorPatient;
 
     @Column(name = "dateofapp")
-    private Date dateOfApp;
+    private String dateOfApp;
 
     @Column(name = "comments", length = 1000)
     private String comments;
@@ -68,11 +68,11 @@ public class Appointment implements Serializable {
         this.doctorPatient = doctorPatient;
     }
 
-    public Date getDateOfApp() {
+    public String getDateOfApp() {
         return dateOfApp;
     }
 
-    public void setDateOfApp(Date dateOfApp) {
+    public void setDateOfApp(String dateOfApp) {
         this.dateOfApp = dateOfApp;
     }
 

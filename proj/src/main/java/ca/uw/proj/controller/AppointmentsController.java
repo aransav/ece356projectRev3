@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -61,8 +62,26 @@ public class AppointmentsController {
         modelAndView.setViewName("appDisplay");
 
         return modelAndView;
-
     }
+
+    @RequestMapping(value = "appointmentInfoUpdate")
+    public ModelAndView appointmentInfoUpdate(HttpServletRequest request) {
+        if (request.getParameter("count") == null) {
+            return appointmentInfoDisp(request);
+        }
+        int id = Integer.valueOf(request.getParameter("count"));
+        Appointment a = appService.getAppointment(id);
+        DoctorPatientAppointment dpA = new DoctorPatientAppointment();
+        dpA.setDoctor(a.getDoctorPatient().getDoctor());
+        dpA.setPatient(a.getDoctorPatient().getPatient());
+        dpA.setAppointment(a);
+        dpA.setDateOfApp(a.getDateOfApp().toString());
+        ModelAndView m = new ModelAndView("update-app-form", "startAppSelectPatient", dpA);
+        m.addObject("a", a);
+        return m;
+    }
+
+
 
     @RequestMapping(value = "startAppSelectPatient")
     public ModelAndView startAppSelectPatient(HttpServletRequest request) {
@@ -100,7 +119,7 @@ public class AppointmentsController {
         Patient _p = dpA.getPatient();
         Staff _d = dpA.getDoctor();
         Appointment _a = dpA.getAppointment();
-        
+
         if (_p == null || _d == null || _a == null) {
             errMessage = "Failed to find patient based on entered health card number";
             dpA = new DoctorPatientAppointment();

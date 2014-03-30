@@ -241,7 +241,7 @@ public class UtilitiesServiceImpl implements UtilitiesService {
         
         Appointment app1 = new Appointment(); 
         app1.setDoctorPatient(dp3); 
-        app1.setDateOfApp(new java.sql.Date(2014, 3, 6)); 
+        app1.setDateOfApp("2014-04-06"); 
         app1.setComments("coming for blood test");
         app1.setProcedureDesc("blood test");
         app1.setStatus("complete");
@@ -249,7 +249,7 @@ public class UtilitiesServiceImpl implements UtilitiesService {
         
         Appointment app2 = new Appointment(); 
         app2.setDoctorPatient(dp3); 
-        app2.setDateOfApp(new java.sql.Date(2014, 3, 10)); 
+        app2.setDateOfApp("2014-04-06"); 
         app2.setComments("coming for results of blood test");
         app2.setProcedureDesc("none");
         app2.setStatus("complete");
@@ -257,7 +257,7 @@ public class UtilitiesServiceImpl implements UtilitiesService {
         
         Appointment app3 = new Appointment(); 
         app3.setDoctorPatient(dp5); 
-        app3.setDateOfApp(new java.sql.Date(2014, 3, 7)); 
+        app3.setDateOfApp("2014-04-07"); 
         app3.setComments("coming for physical test");
         app3.setProcedureDesc("physical");
         app3.setStatus("incomplete");
