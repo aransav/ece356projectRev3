@@ -82,13 +82,10 @@ public class DoctorPatientServiceImpl implements DoctorPatientService {
 
     @Override
     public DoctorPatient findDoctorPatient(Staff doctor, Patient patient) {
-        List<DoctorPatient> listA = findDoctorPatientsForPatient(patient);
-        List<DoctorPatient> listB = findDoctorPatientsForDoctor(doctor);
+        List<DoctorPatient> listA = getAllDoctorPatient();
         for (DoctorPatient a: listA){
-            for (DoctorPatient b: listB){
-                if (a.equals(b)){
-                    return a;
-                }
+            if (a.getDoctor().equals(doctor) && a.getPatient().equals(patient)){
+                return a;
             }
         }
         

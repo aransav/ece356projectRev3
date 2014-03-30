@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ca.uw.proj.model;
 
 /**
  *
  * @author siva
  */
-
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -24,21 +22,21 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="_patient")
+@Table(name = "_patient")
 public class Patient implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @OneToOne(cascade={CascadeType.ALL})
+
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(referencedColumnName = "id", name = "patient_id")
     private User u;
-    
-    @Column(name="health_card_no")
+
+    @Column(name = "health_card_no")
     private String healthCardNo;
-    
-    @Column(name="social_ins_no")
+
+    @Column(name = "social_ins_no")
     private long socialInsNo;
 
     public Patient() {
@@ -90,6 +88,12 @@ public class Patient implements Serializable {
         return true;
     }
 
-    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

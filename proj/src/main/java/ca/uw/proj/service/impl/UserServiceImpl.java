@@ -70,4 +70,15 @@ public class UserServiceImpl implements UserService {
             return staffs.get(0).getRole();
         }
     }
+
+    @Override
+    public Staff findDoctor(User user) {
+        List<Staff> l = staffDAO.getAllStaff();
+        for (Staff s: l){
+            if (s.getUser().equals(user)){
+                return s;
+            }
+        }
+        return null;
+    }
 }

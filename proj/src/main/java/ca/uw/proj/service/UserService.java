@@ -5,6 +5,7 @@
  */
 package ca.uw.proj.service;
 
+import ca.uw.proj.model.Staff;
 import ca.uw.proj.model.User;
 import java.util.List;
 
@@ -29,4 +30,6 @@ public interface UserService {
     public boolean authenticate(User user);
     
     public String userType(User user);
+    
+    public Staff findDoctor(User user);
 }

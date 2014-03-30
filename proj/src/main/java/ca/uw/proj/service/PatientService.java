@@ -19,4 +19,6 @@ public interface PatientService {
     public Patient getPatient(User u);
     public void updatePatient(Patient patient);
     public List<Patient> getAllPatients();
+    public Patient getPatient(Long id);
+    public Patient getPatient(String healthCardNo);
 }

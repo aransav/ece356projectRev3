@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ca.uw.proj.service.impl;
 
 import ca.uw.proj.dao.PatientDAO;
@@ -22,15 +21,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class PatientServiceImpl implements PatientService {
-    
+
     @Autowired
     PatientDAO patientDAO;
 
     @Override
     public Patient getPatient(User u) {
-        if (patientDAO.getPatient("u", u) != null){
+        if (patientDAO.getPatient("u", u) != null) {
             return patientDAO.getPatient("u", u).get(0);
-        }else{
+        } else {
             return null;
         }
     }
@@ -44,5 +43,23 @@ public class PatientServiceImpl implements PatientService {
     public List<Patient> getAllPatients() {
         return patientDAO.getAllPatients();
     }
-    
+
+    @Override
+    public Patient getPatient(Long id) {
+        if (patientDAO.getPatient("id", id) != null) {
+            return patientDAO.getPatient("id", id).get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public Patient getPatient(String healthCardNo) {
+        if (patientDAO.getPatient("healthCardNo", healthCardNo) != null) {
+            return patientDAO.getPatient("healthCardNo", healthCardNo).get(0);
+        } else {
+            return null;
+        }
+    }
+
 }

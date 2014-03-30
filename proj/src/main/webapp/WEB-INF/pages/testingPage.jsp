@@ -40,6 +40,10 @@
                 patientUpdateInfoView
             </a></p>
 
+        <p><a href="startAppSelectPatient.html" >
+                startAppSelectPatient
+            </a></p>
+
 
 
         <%--<p><a href="financialInfoView.html" >
