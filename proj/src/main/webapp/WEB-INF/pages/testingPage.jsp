@@ -32,6 +32,14 @@
                 displayUserUpdateForm
             </a></p>
 
+        <p><a href="patientInfoView.html" >
+                patientInfoView
+            </a></p>
+
+        <p><a href="patientUpdateInfoView.html" >
+                patientUpdateInfoView
+            </a></p>
+
 
 
         <%--<p><a href="financialInfoView.html" >
