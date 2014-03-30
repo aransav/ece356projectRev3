@@ -28,9 +28,18 @@
                 Click Visit User Info View
             </a></p>
 
+        <p><a href="displayUserUpdateForm.html" >
+                displayUserUpdateForm
+            </a></p>
 
-        <p><a href="financialInfoView.html" >
+
+
+        <%--<p><a href="financialInfoView.html" >
                 Click Visit Financial Info View
             </a></p>
+
+        <p><a href="displayAppointmentForm.html" >
+                make appointment
+            </a></p> --%>
     </body>
 </html>

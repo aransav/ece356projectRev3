@@ -70,10 +70,8 @@ public class Patient implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.u);
-        hash = 97 * hash + Objects.hashCode(this.healthCardNo);
-        hash = 97 * hash + (int) (this.socialInsNo ^ (this.socialInsNo >>> 32));
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.u);
         return hash;
     }
 
@@ -89,13 +87,9 @@ public class Patient implements Serializable {
         if (!Objects.equals(this.u, other.u)) {
             return false;
         }
-        if (!Objects.equals(this.healthCardNo, other.healthCardNo)) {
-            return false;
-        }
-        if (this.socialInsNo != other.socialInsNo) {
-            return false;
-        }
         return true;
     }
+
+    
 
 }

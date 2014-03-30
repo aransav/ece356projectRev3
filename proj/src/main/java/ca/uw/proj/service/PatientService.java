@@ -8,6 +8,7 @@ package ca.uw.proj.service;
 
 import ca.uw.proj.model.Patient;
 import ca.uw.proj.model.User;
+import java.util.List;
 
 /**
  *
@@ -17,4 +18,5 @@ public interface PatientService {
     //comment
     public Patient getPatient(User u);
     public void updatePatient(Patient patient);
+    public List<Patient> getAllPatients();
 }

@@ -10,6 +10,7 @@ import ca.uw.proj.dao.PatientDAO;
 import ca.uw.proj.model.Patient;
 import ca.uw.proj.model.User;
 import ca.uw.proj.service.PatientService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +38,11 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void updatePatient(Patient patient) {
         patientDAO.updatePatient(patient);
+    }
+
+    @Override
+    public List<Patient> getAllPatients() {
+        return patientDAO.getAllPatients();
     }
     
 }

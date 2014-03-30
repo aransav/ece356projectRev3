@@ -28,4 +28,7 @@ public interface DoctorPatientService {
     public List<DoctorPatient> getAllDoctorPatient();
     public void removeDoctorPatient(DoctorPatient doctorPatient);
     
+    public List<Staff> getAllDoctors();
+    
+    
 }

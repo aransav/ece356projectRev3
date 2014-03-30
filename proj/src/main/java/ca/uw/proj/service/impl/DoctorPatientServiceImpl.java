@@ -6,6 +6,7 @@
 package ca.uw.proj.service.impl;
 
 import ca.uw.proj.dao.DoctorPatientDAO;
+import ca.uw.proj.dao.StaffDAO;
 import ca.uw.proj.model.DoctorPatient;
 import ca.uw.proj.model.Patient;
 import ca.uw.proj.model.Staff;
@@ -26,6 +27,9 @@ public class DoctorPatientServiceImpl implements DoctorPatientService {
 
     @Autowired
     DoctorPatientDAO doctorPatientDAO;
+    
+    @Autowired
+    StaffDAO staffDAO;
 
     @Override
     public void addDoctorPatient(DoctorPatient doctorPatient) {
@@ -110,6 +114,19 @@ public class DoctorPatientServiceImpl implements DoctorPatientService {
     @Override
     public void removeDoctorPatient(DoctorPatient doctorPatient) {
         doctorPatientDAO.removeDoctorPatient(doctorPatient);
+    }
+
+    @Override
+    public List<Staff> getAllDoctors() {
+        List<Staff> l = staffDAO.getAllStaff();
+        List<Staff> result = new ArrayList<>();
+        for (Staff s: l){
+            if (s.getRole().equals("doctor")){
+                result.add(s);
+            }
+        }
+        return result;
+        
     }
 
 }
