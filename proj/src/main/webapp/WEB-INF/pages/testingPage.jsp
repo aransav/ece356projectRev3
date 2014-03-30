@@ -14,13 +14,18 @@
     <body>
         <h1>Hello World!</h1>
         <p><a href="patientAppView.html" >
-            Click AppView
-        </a></p>
+                Click AppView
+            </a></p>
         <p><a href="patientPrescripView.html" >
-            Click prescriptionView
-        </a></p>
+                Click prescriptionView
+            </a></p>
         <p><a href="patientVisitRecordView.html" >
-            Click Visit Record View
-        </a></p>
+                Click Visit Record View
+            </a></p>
+
+
+        <p><a href="userInfoView.html" >
+                Click Visit User Info View
+            </a></p>
     </body>
 </html>
