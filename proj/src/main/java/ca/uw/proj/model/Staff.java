@@ -81,6 +81,14 @@ public class Staff implements Serializable {
         return true;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
   
     
  
