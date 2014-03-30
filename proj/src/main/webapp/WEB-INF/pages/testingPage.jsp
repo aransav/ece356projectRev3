@@ -27,5 +27,10 @@
         <p><a href="userInfoView.html" >
                 Click Visit User Info View
             </a></p>
+
+
+        <p><a href="financialInfoView.html" >
+                Click Visit Financial Info View
+            </a></p>
     </body>
 </html>
