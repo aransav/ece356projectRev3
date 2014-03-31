@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Visitation Records</title>
+        <title>Vies Visitation Records</title>
         <style type="text/css"> @import url("resources/css/main.css"); </style> 
     </head>
     <body>
@@ -52,10 +52,10 @@
 ${errMsg}
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header text-center">Edit Visitation Records</h1>
+                <h1 class="page-header text-center">View Visitation Records</h1>
             </div>
         </div>
-        <div class="container" id="docPatinfobodyCenter">
+        <div class="container">
             <div class="col-lg-12">
                 <div class="panel panel-defaut">
                     <div class="panel-body">
@@ -63,9 +63,20 @@ ${errMsg}
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Patient User ID</th>
-                                        <th>Total Appointments</th>
-                                        <th>Total Visits</th>
+                                        <th>Doctor Username</th>
+                                        <th>Patient Username</th>
+                                        <th>Visit Date</th>
+                                        <th>Revision Number</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Visitation Prescription ID</th>
+                                        <th>Diagnosis</th>
+                                        <th>Surgery Performed</th>
+                                        <c:if test="${role != patientV}" >
+                                                <th width="">Comments</th>
+                                            </c:if>
+                                        
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>  

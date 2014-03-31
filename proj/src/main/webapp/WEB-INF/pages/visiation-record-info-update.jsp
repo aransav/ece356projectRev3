@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View Visitation Records</title>
+        <title>Update Visitation Records</title>
         <style type="text/css"> @import url("resources/css/main.css"); </style> 
     </head>
     <body>
@@ -53,7 +53,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header text-center">Visitation Records</h1>
+                <h1 class="page-header text-center">Update Visitation Records</h1>
             </div>
         </div>
 
