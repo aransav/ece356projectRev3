@@ -121,8 +121,17 @@ public class UtilitiesServiceImpl implements UtilitiesService {
         u10.setStreetno("69"); u10.setStreetname("Nowhere"); u10.setAptno("69"); u10.setCity("New York"); u10.setProv("Ontario"); u10.setZip("K1K1K1");
         u10.setHphone("5196996969"); u10.setCphone("5197996969"); u10.setWphone("5198996969"); 
         u10.setDob("1969-06-15");
-       
+        User u11 = new User(); u11.setUsername("user11"); u11.setPassword("password"); userDAO.addUser(u11);
+        u11.setFname("Charlie"); u11.setLname("Sheen"); u11.setMname("Tigerblood");
+        u11.setStreetno("69"); u11.setStreetname("Nowhere"); u11.setAptno("69"); u11.setCity("New York"); u11.setProv("Ontario"); u11.setZip("K1K1K1");
+        u11.setHphone("5196996969"); u11.setCphone("5197996969"); u11.setWphone("5198996969"); 
+        u11.setDob("1969-06-15");
 
+        User u12 = new User(); u12.setUsername("user12"); u12.setPassword("password"); userDAO.addUser(u12);
+        u12.setFname("MC"); u12.setLname("Hammer"); u12.setMname("broke");
+        u12.setStreetno("69"); u12.setStreetname("Nowhere"); u12.setAptno("69"); u12.setCity("New York"); u12.setProv("Ontario"); u12.setZip("K1K1K1");
+        u12.setHphone("5196996969"); u12.setCphone("5197996969"); u12.setWphone("5198996969"); 
+        u12.setDob("1969-06-15");
         
         UserLoginLog ul1 = new UserLoginLog(); ul1.setUser(u1); ul1.setLogin_time(new java.sql.Date(2014, 3, 1));
         UserLoginLog ul12 = new UserLoginLog(); ul12.setUser(u1); ul12.setLogin_time(new java.sql.Date(2014, 3, 2));
@@ -155,6 +164,8 @@ public class UtilitiesServiceImpl implements UtilitiesService {
         Staff s4 = new Staff(); s4.setUser(u4); s4.setRole("staff");
         Staff s5 = new Staff(); s5.setUser(u5); s5.setRole("staff");
         Staff s6 = new Staff(); s6.setUser(u6); s6.setRole("staff");
+        Staff s11 = new Staff(); s11.setUser(u6); s11.setRole("legal");
+        Staff s12 = new Staff(); s12.setUser(u6); s12.setRole("finance");
         
         staffDAO.addStaff(s1);
         staffDAO.addStaff(s2);
@@ -162,6 +173,9 @@ public class UtilitiesServiceImpl implements UtilitiesService {
         staffDAO.addStaff(s4);
         staffDAO.addStaff(s5);
         staffDAO.addStaff(s6);
+        staffDAO.addStaff(s11);
+        staffDAO.addStaff(s12);
+        
         
         Patient p1 = new Patient(); p1.setUser(u7); p1.setHealthCardNo("111"); p1.setSocialInsNo(111L);
         Patient p2 = new Patient(); p2.setUser(u8); p2.setHealthCardNo("222"); p2.setSocialInsNo(222L);
