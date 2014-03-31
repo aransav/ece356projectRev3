@@ -134,4 +134,15 @@ public class VisitationServiceImpl implements VisitationService {
         }
         return result;
     }
+
+    @Override
+    public VisitationRecord getAllVisitationRecord(Long id) {
+        List<VisitationRecord> l = vrDAO.getVisitationRecord("id", id);;
+        
+        if (l!=null && !l.isEmpty()){
+            return l.get(0);
+        }else{
+            return null;
+        }
+    }
 }

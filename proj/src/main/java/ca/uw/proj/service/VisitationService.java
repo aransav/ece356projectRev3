@@ -26,6 +26,7 @@ public interface VisitationService {
     
     
     public List<VisitationRecord> getAllVisitationRecord();
+    public VisitationRecord getAllVisitationRecord(Long id);
     public List<VisitationRecord> getAllVisitationRecordByPatient(Patient patient);
     public List<VisitationRecord> getAllVisitationRecordByDoctor(Staff doctor);
     
