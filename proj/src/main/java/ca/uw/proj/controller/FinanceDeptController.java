@@ -9,6 +9,7 @@ import ca.uw.proj.model.Appointment;
 import ca.uw.proj.model.Patient;
 import ca.uw.proj.model.Staff;
 import ca.uw.proj.model.User;
+import ca.uw.proj.model.VisitationRecord;
 import ca.uw.proj.service.AppointmentService;
 import ca.uw.proj.service.DoctorPatientService;
 import ca.uw.proj.service.DoctorStaffService;
@@ -18,6 +19,7 @@ import ca.uw.proj.service.StaffService;
 import ca.uw.proj.service.UserService;
 import ca.uw.proj.service.VisitationService;
 import ca.uw.proj.transients.DoctorFinancialObj;
+import ca.uw.proj.transients.PatientFinancialObj;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -35,10 +37,10 @@ public class FinanceDeptController {
 
     @Autowired
     private UserService userService;
-    
+
     @Autowired
-    private StaffService staffService; 
-    
+    private StaffService staffService;
+
     @Autowired
     AppointmentService appointmentService;
     @Autowired
@@ -52,38 +54,65 @@ public class FinanceDeptController {
     @Autowired
     VisitationService visitationService;
 
-    
-
     @RequestMapping(value = "financialDoctorInfo")
     public ModelAndView financialInfoView(HttpServletRequest request) {
         User u = (User) request.getSession().getAttribute("user");
         String role = (String) request.getSession().getAttribute("role");
-        
+
         List<Staff> doctors = staffService.getStaffByRole("doctor");
         List<DoctorFinancialObj> summary = new ArrayList<DoctorFinancialObj>();
-        
-        for (Staff d: doctors){
+
+        for (Staff d : doctors) {
             DoctorFinancialObj df = new DoctorFinancialObj();
             df.setDoctor(d);
-            
-            List<Appointment> appointments =  appointmentService.getAppointmentsForDoctor(d);
+
+            List<Appointment> appointments = appointmentService.getAppointmentsForDoctor(d);
             df.setTotalAppointments(appointments.size());
-            
+
             List<Patient> patients = doctorPatientService.getAllPatientForDoctor(d);
             df.setTotalPatients(patients.size());
-            
+
             summary.add(df);
         }
-        
-        
 
         ModelAndView m = new ModelAndView();
-        m.addObject("summaryList",summary);
+        m.addObject("summaryList", summary);
         m.addObject("role", role);
 
-        m.setViewName("financial-doctor-nfo-view");
+        m.setViewName("financial-doctor-info-view");
 
         return m;
+    }
+
+    @RequestMapping(value = "financialPatientInfo")
+    public ModelAndView financialPatientInfo(HttpServletRequest request) {
+        User u = (User) request.getSession().getAttribute("user");
+        String role = (String) request.getSession().getAttribute("role");
+
+        List<Patient> patients = patientService.getAllPatients();
+        List<PatientFinancialObj> summary = new ArrayList<PatientFinancialObj>();
+
+        for (Patient p : patients) {
+            PatientFinancialObj pf = new PatientFinancialObj();
+            pf.setPatient(p);
+
+            List<Appointment> appointments = appointmentService.getAppointmentForPatient(p);
+            pf.setTotalAppointments(appointments.size());
+
+            List<VisitationRecord> visits = visitationService.getAllVisitationRecordByPatient(p);
+            pf.setTotalVisits(visits.size());
+
+            summary.add(pf);
+        }
+
+        ModelAndView m = new ModelAndView();
+        m.addObject("summaryList", summary);
+        m.addObject("role", role);
+
+        m.setViewName("financial-patient-info-view");
+
+        return m;
+
     }
 
 }

@@ -54,6 +54,9 @@
                 financialDoctorInfo
             </a></p>
 
+        <p><a href="financialPatientInfo.html" >
+                financialPatientInfo
+            </a></p>
 
 
         <%--<p><a href="financialInfoView.html" >
