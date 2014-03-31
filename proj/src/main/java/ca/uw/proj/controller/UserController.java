@@ -31,13 +31,13 @@ public class UserController {
 
     @Autowired
     UserService uS;
-    
+
     @Autowired
     DoctorPatientService dps;
-    
+
     @Autowired
     StaffService staffService;
-    
+
     @Autowired
     PatientService patientService;
 
@@ -93,36 +93,36 @@ public class UserController {
     public ModelAndView submitUserUpdateForm(HttpServletRequest request) {
         User u = (User) request.getSession().getAttribute("user");
         String role = (String) request.getSession().getAttribute("role");
-        
+
         int userID;
-        
-        if (request.getParameter("doctorID") == null){
+
+        if (request.getParameter("doctorID") == null) {
             userID = u.getId();
-        }else{
+        } else {
             userID = Integer.valueOf(request.getParameter("doctorID"));
         }
-        
-        List <Staff> list = staffService.getStaffByRole("doctor");
-        
+
+        List<Staff> list = staffService.getStaffByRole("doctor");
+
         Staff s = null;
-        
-        for (Staff s1: list){
-            if (s1.getUser().getId().equals(userID)){
+
+        for (Staff s1 : list) {
+            if (s1.getUser().getId().equals(userID)) {
                 s = s1;
             }
         }
-        
+
         List<DoctorPatient> list2 = dps.getAllDoctorPatientForDoctor(s);
-        
-         ModelAndView m = new ModelAndView();
-         m.addObject("role",role);
-         m.addObject("doctor", s);
-         m.addObject("user", u);
-         m.addObject("patients",list2);
-        
-         m.setViewName("list-patients-for-doctor");
-         
-         return m;
+
+        ModelAndView m = new ModelAndView();
+        m.addObject("role", role);
+        m.addObject("doctor", s);
+        m.addObject("user", u);
+        m.addObject("patients", list2);
+
+        m.setViewName("list-patients-for-doctor");
+
+        return m;
 
     }
 
@@ -138,11 +138,11 @@ public class UserController {
         String s = request.getParameter("count");
         User ud = uS.getUser(s);
         Patient p = patientService.getPatientByUser(ud);
-        
+
         Staff ss = staffService.getStaffByUser(u);
         List<DoctorPatient> list2 = dps.getAllDoctorPatientForPatient(p);
         DoctorPatient dp2 = dps.getDoctorPatient(ss, p);
-        
+
         ModelAndView m = new ModelAndView();
         m.addObject("role", role);
         m.addObject("user", u);
@@ -168,7 +168,7 @@ public class UserController {
 //        
 //        HttpSession session = request.getSession();
 //        session.setAttribute("patientMap", p);
-        
+
         ModelAndView m = new ModelAndView("MAPdocAddpatient", "patientAddDoc", new DoctorPatient());
         m.addObject("role", role);
         m.addObject("user", u);
@@ -176,54 +176,55 @@ public class UserController {
         //m.setViewName("MAPdocAddpatient");
 
         return m;
-    }    
-    
+    }
+
     @RequestMapping(value = "viewpatientdocviewADDP2")
     public ModelAndView viewpatientdocviewFormAddP2(HttpServletRequest request, @ModelAttribute DoctorPatient s) {
         User u = (User) request.getSession().getAttribute("user");
         String role = (String) request.getSession().getAttribute("role");
         String errMessage1 = null;
         String errMessage2 = null;
-        
-        String da = s.getDoctor().getUser().getUsername();
-        String db = s.getPatient().getUser().getUsername();
-        User u1 = uS.getUser(da);
-        User u2 = uS.getUser(db);
-        
-        Staff s1 = staffService.getStaffByUser(u1);
-        Patient s2 = patientService.getPatientByUser(u2);
-        List<DoctorPatient> l1 = dps.getAllDoctorPatient();
-        int i = 0;
-        for (DoctorPatient l2: l1){
-            if ((l2.getDoctor() == s1) && (l2.getPatient() == s2) ){
-                i = 1;
-                errMessage1 = "Mapping Already Exisits";
-            }
-            else if(s1.getRole().equals("doctor")){
-                i = 1;
-                errMessage2 = "You have no defined a doctor";
-            }
-        }        
-        if (i == 0)
-        {
-            DoctorPatient d3 = new DoctorPatient();
-            d3.setDoctor(s1);
-            d3.setPatient(s2);
-            d3.setPrimaryDoctor(false);
-            dps.addDoctorPatient(d3);
-        }
-        
-        List<DoctorPatient> list2 = dps.getAllDoctorPatientForPatient(s2);
-        
-        ModelAndView m = new ModelAndView();
-        m.addObject("role", role);
-        m.addObject("user", u);
-        m.addObject("errMessage1", errMessage1);
-        m.addObject("errMessage2", errMessage2);
-        m.addObject("list", list2);
-        m.setViewName("viewpatientdocview");
 
-        return m;
+        try {
+            String da = s.getDoctor().getUser().getUsername();
+            String db = s.getPatient().getUser().getUsername();
+            User u1 = uS.getUser(da);
+            User u2 = uS.getUser(db);
+
+            Staff s1 = staffService.getStaffByUser(u1);
+            Patient s2 = patientService.getPatientByUser(u2);
+            List<DoctorPatient> l1 = dps.getAllDoctorPatient();
+            int i = 0;
+            for (DoctorPatient l2 : l1) {
+                if ((l2.getDoctor() == s1) && (l2.getPatient() == s2)) {
+                    i = 1;
+                    errMessage1 = "Mapping Already Exisits";
+                } else if (s1.getRole().equals("doctor")) {
+                    i = 1;
+                    errMessage2 = "You have no defined a doctor";
+                }
+            }
+            if (i == 0) {
+                DoctorPatient d3 = new DoctorPatient();
+                d3.setDoctor(s1);
+                d3.setPatient(s2);
+                d3.setPrimaryDoctor(false);
+                dps.addDoctorPatient(d3);
+            }
+
+            List<DoctorPatient> list2 = dps.getAllDoctorPatientForPatient(s2);
+        } catch (Exception e) {
+            return viewpatientdocviewFormAdd(request);
+        }
+
+        //ModelAndView m = new ModelAndView();
+        //m.addObject("role", role);
+        //m.addObject("user", u);
+        //m.addObject("errMessage1", errMessage1);
+        //m.addObject("errMessage2", errMessage2);
+        //m.addObject("list", list2);
+        //m.setViewName("patient-docview");
+        return viewpatientdocviewForm(request);
     }
-    
+
 }
