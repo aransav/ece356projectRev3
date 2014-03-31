@@ -54,6 +54,8 @@
                 <h1 class="page-header text-center">Patient Information Page</h1>
             </div>
         </div>
+        ${errMessage1}
+        ${errMessage2}
         <div class="col-lg-12">
             <div class="panel panel-defaut">
                 <div class="panel-body">
@@ -224,8 +226,8 @@
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Doctor ID</th>
-                                    <th>Patient ID</th>
+                                    <th>Doctor Doctor Name</th>
+                                    <th>Patient Patient Name</th>
                                     <th>Primary Doctor</th>
                                 </tr>
                             </thead>

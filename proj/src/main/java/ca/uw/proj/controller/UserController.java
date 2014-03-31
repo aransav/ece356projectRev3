@@ -195,13 +195,13 @@ public class UserController {
         List<DoctorPatient> l1 = dps.getAllDoctorPatient();
         int i = 0;
         for (DoctorPatient l2: l1){
-            if ((l2.getDoctor() == s1) && (l2.getPatient() == s2) ){
+            if ((l2.getDoctor().equals(s1)) && (l2.getPatient().equals(s2)) ){
                 i = 1;
                 errMessage1 = "Mapping Already Exisits";
             }
-            else if(s1.getRole().equals("doctor")){
+            else if(!s1.getRole().equals("doctor")){
                 i = 1;
-                errMessage2 = "You have no defined a doctor";
+                errMessage2 = "You have not defined a doctor";
             }
         }        
         if (i == 0)
@@ -214,6 +214,8 @@ public class UserController {
         }
         
         List<DoctorPatient> list2 = dps.getAllDoctorPatientForPatient(s2);
+        Staff doc = staffService.getStaffByUser(u);
+        DoctorPatient dp2 = dps.getDoctorPatient(doc, s2);
         
         ModelAndView m = new ModelAndView();
         m.addObject("role", role);
@@ -221,7 +223,8 @@ public class UserController {
         m.addObject("errMessage1", errMessage1);
         m.addObject("errMessage2", errMessage2);
         m.addObject("list", list2);
-        m.setViewName("viewpatientdocview");
+        m.addObject("dp2", dp2);
+        m.setViewName("patient-docview");
 
         return m;
     }
