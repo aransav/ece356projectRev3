@@ -7,6 +7,7 @@ package ca.uw.proj.service;
 
 import ca.uw.proj.model.DoctorPatient;
 import ca.uw.proj.model.Patient;
+import ca.uw.proj.model.Prescription;
 import ca.uw.proj.model.Staff;
 import ca.uw.proj.model.User;
 import ca.uw.proj.model.VisitPrescription;
@@ -35,4 +36,5 @@ public interface VisitationService {
     public List<VisitationRecord> getAllVisitationRecord(User u);
     
     public List<VisitPrescription> getVisitPrescriptions(User u);
+    public List<VisitPrescription> getVisitPrescriptions(Prescription p);
 }

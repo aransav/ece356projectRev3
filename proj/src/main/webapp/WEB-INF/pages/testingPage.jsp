@@ -48,14 +48,18 @@
         <p><a href="listPatients.html" >
                 listPatients
             </a></p>
-            
-            
+
+
         <p><a href="financialDoctorInfo.html" >
                 financialDoctorInfo
             </a></p>
 
         <p><a href="financialPatientInfo.html" >
                 financialPatientInfo
+            </a></p>
+
+        <p><a href="financialPrescriptionInfo.html" >
+                financialPrescriptionInfo
             </a></p>
 
 

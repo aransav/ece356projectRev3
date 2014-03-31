@@ -9,6 +9,7 @@ import ca.uw.proj.dao.VisitPrescriptionDAO;
 import ca.uw.proj.dao.VisitationRecordDAO;
 import ca.uw.proj.model.DoctorPatient;
 import ca.uw.proj.model.Patient;
+import ca.uw.proj.model.Prescription;
 import ca.uw.proj.model.Staff;
 import ca.uw.proj.model.User;
 import ca.uw.proj.model.VisitPrescription;
@@ -119,5 +120,18 @@ public class VisitationServiceImpl implements VisitationService {
         }
         return result;
 
+    }
+
+    @Override
+    public List<VisitPrescription> getVisitPrescriptions(Prescription p) {
+        List<VisitationRecord> list = getAllVisitationRecord();
+        List<VisitPrescription> result = new ArrayList<>();
+
+        for (VisitationRecord v : list) {
+            if (v.getVisitPrescription().getPrescription().equals(p)){
+                result.add(v.getVisitPrescription());
+            }
+        }
+        return result;
     }
 }

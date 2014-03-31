@@ -7,8 +7,10 @@ package ca.uw.proj.controller;
 
 import ca.uw.proj.model.Appointment;
 import ca.uw.proj.model.Patient;
+import ca.uw.proj.model.Prescription;
 import ca.uw.proj.model.Staff;
 import ca.uw.proj.model.User;
+import ca.uw.proj.model.VisitPrescription;
 import ca.uw.proj.model.VisitationRecord;
 import ca.uw.proj.service.AppointmentService;
 import ca.uw.proj.service.DoctorPatientService;
@@ -20,6 +22,7 @@ import ca.uw.proj.service.UserService;
 import ca.uw.proj.service.VisitationService;
 import ca.uw.proj.transients.DoctorFinancialObj;
 import ca.uw.proj.transients.PatientFinancialObj;
+import ca.uw.proj.transients.PrescriptionFinancialObj;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -110,6 +113,34 @@ public class FinanceDeptController {
         m.addObject("role", role);
 
         m.setViewName("financial-patient-info-view");
+
+        return m;
+
+    }
+
+    @RequestMapping(value = "financialPrescriptionInfo")
+    public ModelAndView financialPrescriptionInfo(HttpServletRequest request) {
+        User u = (User) request.getSession().getAttribute("user");
+        String role = (String) request.getSession().getAttribute("role");
+
+        List<Prescription> scrips = prescriptionDataService.getAllPrescriptions();
+        List<PrescriptionFinancialObj> summary = new ArrayList<PrescriptionFinancialObj>();
+
+        for (Prescription p : scrips) {
+            PrescriptionFinancialObj o = new PrescriptionFinancialObj();
+            o.setPrescription(p);
+
+            List<VisitPrescription> vps = visitationService.getVisitPrescriptions(p);
+            o.setTotalTimesAssigned(vps.size());
+
+            summary.add(o);
+        }
+
+        ModelAndView m = new ModelAndView();
+        m.addObject("summaryList", summary);
+        m.addObject("role", role);
+
+        m.setViewName("financial-prescription-info-view");
 
         return m;
 
