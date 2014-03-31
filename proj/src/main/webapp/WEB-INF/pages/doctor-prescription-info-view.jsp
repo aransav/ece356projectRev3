@@ -52,7 +52,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header text-center">Financial View - Doctors Summary</h1>
+                <h1 class="page-header text-center">Legal Prescription Summary</h1>
             </div>
         </div>
         <div class="container" id="docPatinfobodyCenter">
