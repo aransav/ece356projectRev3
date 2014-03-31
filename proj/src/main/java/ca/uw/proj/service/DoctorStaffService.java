@@ -18,8 +18,12 @@ public interface DoctorStaffService {
     public void addDoctorStaff(DoctorStaff doctorStaff);
     public void updateDoctorStaff(DoctorStaff doctorStaff);
     public void removeDoctorStaff(DoctorStaff doctorStaff);
+    
+    
     public List<Staff> findDoctorsForStaff(Staff staff);
     public List<Staff> findStaffForDoctor(Staff doctor);
-    public List<DoctorStaff> getAllDoctorStaff(DoctorStaff doctorStaff);
+    
+    
+    public List<DoctorStaff> getAllDoctorStaff();
     
 }
