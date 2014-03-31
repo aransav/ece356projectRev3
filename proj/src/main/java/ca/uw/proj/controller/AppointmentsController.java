@@ -184,7 +184,7 @@ public class AppointmentsController {
             return m;
         }
 
-        if (dpService.findDoctorPatient(doctor, p) == null) {
+        if (!dpService.existsDoctorPatient(doctor, p)) {
             dpA = new DoctorPatientAppointment();
             dpA.setDoctor(new Staff());
             dpA.setPatient(new Patient());
@@ -199,7 +199,7 @@ public class AppointmentsController {
             return m;
         }
 
-        DoctorPatient dp = dpService.findDoctorPatient(doctor, p);
+        DoctorPatient dp = dpService.getDoctorPatient(doctor, p);
 
         Appointment app = new Appointment();
         app.setDoctorPatient(dp);

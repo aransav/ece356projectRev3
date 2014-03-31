@@ -9,6 +9,7 @@ import ca.uw.proj.model.Patient;
 import ca.uw.proj.model.Staff;
 import ca.uw.proj.model.User;
 import ca.uw.proj.service.DoctorPatientService;
+import ca.uw.proj.service.StaffService;
 import ca.uw.proj.service.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +31,9 @@ public class UserController {
     
     @Autowired
     DoctorPatientService dps;
+    
+    @Autowired
+    StaffService staffService;
 
     @RequestMapping(value = "userInfoView")
     public ModelAndView userInfoView(HttpServletRequest request) {
@@ -92,7 +96,7 @@ public class UserController {
             userID = Integer.valueOf(request.getParameter("doctorID"));
         }
         
-        List <Staff> list = dps.getAllDoctors();
+        List <Staff> list = staffService.getStaffByRole("doctor");
         
         Staff s = null;
         
@@ -102,7 +106,7 @@ public class UserController {
             }
         }
         
-        List<Patient> list2 = dps.findPatientsforDoctor(s);
+        List<Patient> list2 = dps.getAllPatientForDoctor(s);
         
          ModelAndView m = new ModelAndView();
          m.addObject("role",role);

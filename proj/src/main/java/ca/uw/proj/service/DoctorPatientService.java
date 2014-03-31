@@ -17,18 +17,14 @@ import java.util.List;
  */
 public interface DoctorPatientService {
     public void addDoctorPatient(DoctorPatient doctorPatient);
-    public void addDoctorPatient(Staff doctor, Patient patient, boolean primaryDoctor);
     public void updateDoctorPatient(DoctorPatient doctorPatient);
-    public List<Staff> findDoctorsForPatient(Patient patient);
-    public List<DoctorPatient> findDoctorPatientsForPatient(Patient patient);
-    public List<Patient> findPatientsforDoctor(Staff doctor);
-    public List<DoctorPatient> findDoctorPatientsForDoctor(Staff doctor);
-    public DoctorPatient findDoctorPatient(Staff doctor, Patient patient);
-    public Staff findPrimaryDoctor(Patient patient);
+    public void removeoctorPatient(DoctorPatient doctorPatient);
     public List<DoctorPatient> getAllDoctorPatient();
-    public void removeDoctorPatient(DoctorPatient doctorPatient);
     
-    public List<Staff> getAllDoctors();
+    public List<Staff> getAllDoctorForPatient(Patient patient);
+    public List<Patient> getAllPatientForDoctor(Staff doctor);
     
+    public boolean existsDoctorPatient(Staff doctor, Patient patient);
+    public DoctorPatient getDoctorPatient(Staff doctor, Patient patient);
     
 }

@@ -6,6 +6,7 @@
 package ca.uw.proj.service.impl;
 
 import ca.uw.proj.dao.DoctorPatientDAO;
+import ca.uw.proj.dao.PatientDAO;
 import ca.uw.proj.dao.StaffDAO;
 import ca.uw.proj.model.DoctorPatient;
 import ca.uw.proj.model.Patient;
@@ -27,22 +28,16 @@ public class DoctorPatientServiceImpl implements DoctorPatientService {
 
     @Autowired
     DoctorPatientDAO doctorPatientDAO;
-    
+
     @Autowired
     StaffDAO staffDAO;
+
+    @Autowired
+    PatientDAO patientDAO;
 
     @Override
     public void addDoctorPatient(DoctorPatient doctorPatient) {
         doctorPatientDAO.addDoctorPatient(doctorPatient);
-    }
-
-    @Override
-    public void addDoctorPatient(Staff doctor, Patient patient, boolean primaryDoctor) {
-        DoctorPatient doctorPatient = new DoctorPatient();
-        doctorPatient.setDoctor(doctor);
-        doctorPatient.setPatient(patient);
-        doctorPatient.setPrimaryDoctor(primaryDoctor);
-        addDoctorPatient(doctorPatient);
     }
 
     @Override
@@ -51,56 +46,8 @@ public class DoctorPatientServiceImpl implements DoctorPatientService {
     }
 
     @Override
-    public List<Staff> findDoctorsForPatient(Patient patient) {
-        List<DoctorPatient> l = findDoctorPatientsForPatient(patient);
-        List<Staff> doctors = new ArrayList<Staff>();
-        for (DoctorPatient p : l) {
-            doctors.add(p.getDoctor());
-        }
-        return doctors;
-    }
-
-    @Override
-    public List<DoctorPatient> findDoctorPatientsForPatient(Patient patient) {
-        return doctorPatientDAO.getDoctorPatient("patient", patient);
-    }
-
-    @Override
-    public List<Patient> findPatientsforDoctor(Staff doctor) {
-        List<DoctorPatient> l = findDoctorPatientsForDoctor(doctor);
-        List<Patient> patients = new ArrayList<>();
-        for (DoctorPatient p : l) {
-            patients.add(p.getPatient());
-        }
-        return patients;
-    }
-
-    @Override
-    public List<DoctorPatient> findDoctorPatientsForDoctor(Staff doctor) {
-        return doctorPatientDAO.getDoctorPatient("doctor", doctor);
-    }
-
-    @Override
-    public DoctorPatient findDoctorPatient(Staff doctor, Patient patient) {
-        List<DoctorPatient> listA = getAllDoctorPatient();
-        for (DoctorPatient a: listA){
-            if (a.getDoctor().equals(doctor) && a.getPatient().equals(patient)){
-                return a;
-            }
-        }
-        
-        return null;
-    }
-
-    @Override
-    public Staff findPrimaryDoctor(Patient patient) {
-        List<DoctorPatient> listA = findDoctorPatientsForPatient(patient);
-        for (DoctorPatient a: listA){
-            if (a.isPrimaryDoctor()){
-                return a.getDoctor();
-            }
-        }
-        return null;
+    public void removeoctorPatient(DoctorPatient doctorPatient) {
+        doctorPatientDAO.removeDoctorPatient(doctorPatient);
     }
 
     @Override
@@ -109,21 +56,49 @@ public class DoctorPatientServiceImpl implements DoctorPatientService {
     }
 
     @Override
-    public void removeDoctorPatient(DoctorPatient doctorPatient) {
-        doctorPatientDAO.removeDoctorPatient(doctorPatient);
-    }
-
-    @Override
-    public List<Staff> getAllDoctors() {
-        List<Staff> l = staffDAO.getAllStaff();
+    public List<Staff> getAllDoctorForPatient(Patient patient) {
+        List<DoctorPatient> list = getAllDoctorPatient();
         List<Staff> result = new ArrayList<>();
-        for (Staff s: l){
-            if (s.getRole().equals("doctor")){
-                result.add(s);
+        for (DoctorPatient d : list) {
+            if (d.getPatient().equals(patient)) {
+                result.add(d.getDoctor());
             }
         }
         return result;
-        
+    }
+
+    @Override
+    public List<Patient> getAllPatientForDoctor(Staff doctor) {
+        List<DoctorPatient> list = getAllDoctorPatient();
+        List<Patient> result = new ArrayList<>();
+        for (DoctorPatient d : list) {
+            if (d.getDoctor().equals(doctor)) {
+                result.add(d.getPatient());
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public boolean existsDoctorPatient(Staff doctor, Patient patient) {
+        List<DoctorPatient> list = getAllDoctorPatient();
+        for (DoctorPatient d : list) {
+            if (d.getDoctor().equals(doctor) && d.getPatient().equals(patient)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public DoctorPatient getDoctorPatient(Staff doctor, Patient patient) {
+        List<DoctorPatient> list = getAllDoctorPatient();
+        for (DoctorPatient d : list) {
+            if (d.getDoctor().equals(doctor) && d.getPatient().equals(patient)) {
+                return d;
+            }
+        }
+        return null;
     }
 
 }

@@ -55,7 +55,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public void addAppointment(Staff doctor, Patient patient, Date date, int schedLength, String procedureDesc, String comments, String status) {
-        DoctorPatient doctorPatient = doctorPatientService.findDoctorPatient(doctor, patient);
+        DoctorPatient doctorPatient = doctorPatientService.getDoctorPatient(doctor, patient);
         addAppointment(doctorPatient, date, schedLength, procedureDesc, comments, status);
     }
 
@@ -71,20 +71,24 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public List<Appointment> getAppointmentsForDoctor(Staff doctor) {
-        List<DoctorPatient> doctorPatients = doctorPatientService.findDoctorPatientsForDoctor(doctor);
+        List<DoctorPatient> doctorPatients = doctorPatientService.getAllDoctorPatient();
         List<Appointment> apps = new ArrayList<Appointment>();
         for (DoctorPatient p : doctorPatients) {
-            apps.addAll(appointmentDAO.getAppointment("DoctorPatient", p));
+            if (p.getDoctor().equals(doctor)) {
+                apps.addAll(appointmentDAO.getAppointment("DoctorPatient", p));
+            }
         }
         return apps;
     }
 
     @Override
     public List<Appointment> getAppointmentForPatient(Patient patient) {
-        List<DoctorPatient> doctorPatients = doctorPatientService.findDoctorPatientsForPatient(patient);
+        List<DoctorPatient> doctorPatients = doctorPatientService.getAllDoctorPatient();
         List<Appointment> apps = new ArrayList<Appointment>();
         for (DoctorPatient p : doctorPatients) {
-            apps.addAll(appointmentDAO.getAppointment("DoctorPatient", p));
+            if (p.getPatient().equals(patient)) {
+                apps.addAll(appointmentDAO.getAppointment("DoctorPatient", p));
+            }
         }
         return apps;
     }
@@ -99,7 +103,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     public List<Appointment> getAppointmentsForRange(Date startDate, Date endDate) {
         List<Appointment> apps = new ArrayList<Appointment>();
         List<Date> dates = utilitiesService.generateRangeDates(startDate, endDate);
-        for (Date d: dates){
+        for (Date d : dates) {
             apps.addAll(getAppointmentsForDate(d));
         }
         return apps;
@@ -109,24 +113,24 @@ public class AppointmentServiceImpl implements AppointmentService {
     public List<Appointment> getAppointmentsForUser(User u) {
         List<Appointment> appsAll = getAllAppointments();
         List<Appointment> apps = new ArrayList<>();
-        
-        for (Appointment a: appsAll){
+
+        for (Appointment a : appsAll) {
             DoctorPatient dp = a.getDoctorPatient();
             Staff doctor = dp.getDoctor();
             Patient patient = dp.getPatient();
-            
-            if (doctor.getUser().equals(u) || patient.getUser().equals(u)){
+
+            if (doctor.getUser().equals(u) || patient.getUser().equals(u)) {
                 apps.add(a);
             }
         }
-        
+
         return apps;
-        
+
     }
 
     @Override
     public Appointment getAppointment(int id) {
-        return appointmentDAO.getAppointment((long)id);
+        return appointmentDAO.getAppointment((long) id);
     }
 
 }
