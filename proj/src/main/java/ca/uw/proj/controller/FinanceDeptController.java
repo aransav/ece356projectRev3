@@ -157,7 +157,7 @@ public class FinanceDeptController {
             PrescriptionFinancialObj o = new PrescriptionFinancialObj();
             o.setPrescription(p);
 
-            List<VisitPrescription> vps = visitationService.getVisitPrescriptions(p);
+            //List<VisitPrescription> vps = visitationService.getVisitPrescriptions(p);
             //o.setTotalTimesAssigned(vps.size());
 
             summary.add(o);
