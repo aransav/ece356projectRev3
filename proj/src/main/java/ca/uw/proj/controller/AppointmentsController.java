@@ -88,20 +88,13 @@ public class AppointmentsController {
         User u = (User) request.getSession().getAttribute("user");
         String role = (String) request.getSession().getAttribute("role");
 
-        //List<Patient> listPatients = patientService.getAllPatients();
-        //ModelAndView m = new ModelAndView("start-app-select-patient-form", "startAppSelectPatient", new Patient());
-        //m.addObject("role", role);
-        //m.addObject("listPatients", listPatients);
+
         DoctorPatientAppointment dpA = new DoctorPatientAppointment();
         dpA.setDoctor(new Staff());
         dpA.setPatient(new Patient());
         dpA.setAppointment(new Appointment());
 
         ModelAndView m = new ModelAndView("start-app-select-patient-form", "startAppSelectPatient", dpA);
-        //m.addObject("patient2", new Patient());
-        //m.addObject("doctor2", new Staff());
-        //m.addObject("appointment2", new Appointment());
-
         m.addObject("role", role);
 
         return m;
@@ -203,11 +196,12 @@ public class AppointmentsController {
 
         Appointment app = new Appointment();
         app.setDoctorPatient(dp);
-        //app.setComments(_a.getComments());
-        //app.setProcedureDesc(_a.getProcedureDesc());
-        //app.setSchedLength(_a.getSchedLength());
-        //app.setStatus(_a.getStatus());
-        //do date of app
+        app.setComments(_a.getComments());
+        app.setProcedureDesc(_a.getProcedureDesc());
+        app.setSchedLength(_a.getSchedLength());
+        app.setStatus(_a.getStatus());
+        app.setDateOfApp(_a.getDateOfApp());
+ 
 
         appService.addAppointment(app);
 
@@ -219,6 +213,7 @@ public class AppointmentsController {
 
     }
 
+    //this should be unused
     @RequestMapping(value = "submitStartAppForm")
     public ModelAndView submitStartAppForm(HttpServletRequest request, @ModelAttribute Appointment _app) {
         User u = (User) request.getSession().getAttribute("user");

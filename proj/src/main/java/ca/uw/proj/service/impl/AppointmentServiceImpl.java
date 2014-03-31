@@ -75,7 +75,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         List<Appointment> apps = new ArrayList<Appointment>();
         for (DoctorPatient p : doctorPatients) {
             if (p.getDoctor().equals(doctor)) {
-                apps.addAll(appointmentDAO.getAppointment("DoctorPatient", p));
+                apps.addAll(appointmentDAO.getAppointment("doctorPatient", p));
             }
         }
         return apps;
@@ -87,7 +87,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         List<Appointment> apps = new ArrayList<Appointment>();
         for (DoctorPatient p : doctorPatients) {
             if (p.getPatient().equals(patient)) {
-                apps.addAll(appointmentDAO.getAppointment("DoctorPatient", p));
+                apps.addAll(appointmentDAO.getAppointment("doctorPatient", p));
             }
         }
         return apps;
