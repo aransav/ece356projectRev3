@@ -26,5 +26,8 @@ public interface DoctorPatientService {
     
     public boolean existsDoctorPatient(Staff doctor, Patient patient);
     public DoctorPatient getDoctorPatient(Staff doctor, Patient patient);
+
+    public List<DoctorPatient> getAllDoctorPatientForDoctor(Staff doctor);
+    public List<DoctorPatient> getAllDoctorPatientForPatient(Patient patient);
     
 }

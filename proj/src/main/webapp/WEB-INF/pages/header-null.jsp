@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="frontPage.jsp">Super Cool New Program - Invalid User</a>
+            <a class="navbar-brand" href="frontPage.jsp">ECE 358 Demo - User Type Invalid User</a>
         </div>            
         <ul class="nav navbar-top-links navbar-right"> 
             <li class="dropdown">

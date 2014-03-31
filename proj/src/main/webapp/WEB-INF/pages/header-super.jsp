@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="frontPage.jsp">Super Cool New Program - Super User</a>
+            <a class="navbar-brand" href="frontPage.jsp">ECE 358 Demo - User Type Super User</a>
         </div>            
         <ul class="nav navbar-top-links navbar-right"> 
             <li class="dropdown">
@@ -20,9 +20,9 @@
                     </li>
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Patient Info</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Appointments</a>
+                    <li><a href="#"><i class="fa fa-fa-calendar fa-fw"></i> Appointments</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Visitation Records</a>
+                    <li><a href="#"><i class="fa fa-clipboard fa-fw"></i> Visitation Records</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="logoutRefresh.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

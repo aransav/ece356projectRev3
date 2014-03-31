@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="frontPage.jsp">Super Cool New Program - Doctor</a>
+            <a class="navbar-brand" href="dashboard.html">ECE 358 Demo - User Type Doctor</a>
         </div>            
         <ul class="nav navbar-top-links navbar-right"> 
             <li class="dropdown">
@@ -16,13 +16,15 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="userProf.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="userInfoView.html"><i class="fa fa-user fa-fw"></i> View User Profile</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Patient Info</a>
+                    <li><a href="listPatients.html"><i class="fa fa-users fa-fw"></i> View List of Patients </a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Appointments</a>
+                    <li><a href="appointmentInfo.html"><i class="fa fa-calendar fa-fw"></i> View Appointments</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Visitation Records</a>
+                    <li><a href="#"><i class="fa fa-clipboard fa-fw"></i> View Visitation Records</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-medkit fa-fw"></i> View All Legal Prescriptions</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="logoutRefresh.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

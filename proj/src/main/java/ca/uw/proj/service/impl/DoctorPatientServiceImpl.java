@@ -78,6 +78,31 @@ public class DoctorPatientServiceImpl implements DoctorPatientService {
         }
         return result;
     }
+    
+    
+    @Override
+    public List<DoctorPatient> getAllDoctorPatientForDoctor(Staff doctor) {
+        List<DoctorPatient> list = getAllDoctorPatient();
+        List<DoctorPatient> result = new ArrayList<>();
+        for (DoctorPatient d : list) {
+            if (d.getDoctor().equals(doctor)) {
+                result.add(d);
+            }
+        }
+        return result;
+    }    
+    
+    @Override
+    public List<DoctorPatient> getAllDoctorPatientForPatient(Patient patient) {
+        List<DoctorPatient> list = getAllDoctorPatient();
+        List<DoctorPatient> result = new ArrayList<>();
+        for (DoctorPatient d : list) {
+            if (d.getPatient().equals(patient)) {
+                result.add(d);
+            }
+        }
+        return result;
+    }    
 
     @Override
     public boolean existsDoctorPatient(Staff doctor, Patient patient) {

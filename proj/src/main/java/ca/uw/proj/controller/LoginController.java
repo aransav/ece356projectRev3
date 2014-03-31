@@ -54,8 +54,10 @@ public class LoginController {
 
             session.setAttribute("user", u);
             session.setAttribute("role", role);
-
-            modelAndView.setViewName("testingPage");
+            
+            modelAndView.addObject("role", role);
+            modelAndView.addObject("user1", u);
+            modelAndView.setViewName("dashboard-base");
 
             
             return modelAndView;
@@ -72,6 +74,19 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.invalidate();
         return new ModelAndView("home", "login-entity", new User());
+    }
+    
+    @RequestMapping(value = "dashboard")
+    public ModelAndView dashboardsc(HttpServletRequest request) {
+        User u = (User) request.getSession().getAttribute("user");
+        String role = (String) request.getSession().getAttribute("role");
+
+        ModelAndView m = new ModelAndView();
+        m.addObject("role", role);
+        m.addObject("user1", u);
+        m.setViewName("dashboard-base");
+        
+        return m;
     }
 
 }
