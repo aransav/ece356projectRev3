@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Visitation Records</title>
+        <title>Vies Visitation Records</title>
         <style type="text/css"> @import url("resources/css/main.css"); </style> 
     </head>
     <body>
@@ -52,7 +52,7 @@
 ${errMsg}
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header text-center">Edit Visitation Records</h1>
+                <h1 class="page-header text-center">View Visitation Records</h1>
             </div>
         </div>
         <div class="container">
