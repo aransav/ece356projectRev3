@@ -24,9 +24,7 @@
                     </li>
                     <li><a href="startAppSelectPatient.html"><i class="fa fa-calendar fa-fw"></i> Create Appointments</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-calendar fa-fw"></i> View Appointments</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-clipboard fa-fw"></i> View Visitation Records</a>
+                    <li><a href="listDoctorsForThisStaff.html"><i class="fa fa-users fa-fw"></i> View My Doctors</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="logoutRefresh.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
