@@ -143,7 +143,33 @@ public class FinanceDeptController {
         m.setViewName("financial-prescription-info-view");
 
         return m;
+    }
 
+    @RequestMapping(value = "doctorPrescriptionInfo")
+    public ModelAndView doctorPrescriptionInfo(HttpServletRequest request) {
+        User u = (User) request.getSession().getAttribute("user");
+        String role = (String) request.getSession().getAttribute("role");
+
+        List<Prescription> scrips = prescriptionDataService.getAllPrescriptions();
+        List<PrescriptionFinancialObj> summary = new ArrayList<PrescriptionFinancialObj>();
+
+        for (Prescription p : scrips) {
+            PrescriptionFinancialObj o = new PrescriptionFinancialObj();
+            o.setPrescription(p);
+
+            List<VisitPrescription> vps = visitationService.getVisitPrescriptions(p);
+            //o.setTotalTimesAssigned(vps.size());
+
+            summary.add(o);
+        }
+
+        ModelAndView m = new ModelAndView();
+        m.addObject("summaryList", summary);
+        m.addObject("role", role);
+
+        m.setViewName("doctor-prescription-info-view");
+
+        return m;
     }
 
 }
