@@ -126,4 +126,57 @@ public class VisitationRecordController {
         return visitationRecordInfoUpdate(request);
 
     }
+    
+    
+    @RequestMapping(value = "visitationRecordAdd")
+    public ModelAndView visitationRecordAdd(HttpServletRequest request) {
+        User u = (User) request.getSession().getAttribute("user");
+        String role = (String) request.getSession().getAttribute("role");
+
+        String errMsg = "";
+
+        if (request.getParameter("errMsg") != null) {
+            errMsg = request.getParameter("errMsg");
+        }
+
+        ModelAndView m = new ModelAndView("visiation-record-info-update", "visiationRecordInfoUpdate", new VisitationRecord());
+        m.addObject("role", role);
+        m.addObject("errMsg", errMsg);
+
+        m.setViewName("visiation-record-info-add");
+
+        return m;
+    }
+
+    @RequestMapping(value = "submitVRAdd")
+    public ModelAndView submitVRAdd(HttpServletRequest request, @ModelAttribute VisitationRecord _v) {
+        User u = (User) request.getSession().getAttribute("user");
+        String role = (String) request.getSession().getAttribute("role");
+
+        String errMessage;
+        ModelAndView m;
+        Long id = 0L;
+        VisitationRecord v = new VisitationRecord();
+        try {
+            v.setComments(_v.getComments());
+            v.setDoctorPatient(_v.getDoctorPatient());
+            v.setDiagnosis(_v.getDiagnosis());
+            v.setEndTime(_v.getEndTime());
+            v.setRevNo(0);
+            v.setStartTime(_v.getStartTime());
+            v.setSurgeryPerformed(_v.getSurgeryPerformed());
+            v.setVisitDate(_v.getVisitDate());
+            v.setVisitPrescription(_v.getVisitPrescription());
+            
+            vService.addVisitationRecord(v);
+           
+        } catch (Exception e) {
+            errMessage = e.getMessage();
+            request.getSession().setAttribute("errMsg", errMessage);
+            return visitationRecordAdd(request);
+        }
+
+        return visitListInfo(request);
+
+    }
 }
