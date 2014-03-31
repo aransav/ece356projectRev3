@@ -49,6 +49,11 @@ public class VisitationRecordController {
             userID = u.getId();
         }
 
+        String errMsg = "";
+        if (request.getParameter("errMsg") != null) {
+            errMsg = request.getParameter("errMsg");
+        }
+
         List<VisitationRecord> l = new ArrayList<>();
 
         l = vService.getAllVisitationRecord(userService.getUser(userID));
@@ -56,25 +61,25 @@ public class VisitationRecordController {
         ModelAndView m = new ModelAndView();
         m.addObject("role", role);
         m.addObject("records", l);
+        m.addObject("errMsg", errMsg);
         m.setViewName("view-visitation-records");
 
         return m;
     }
-    
-    
-     @RequestMapping(value = "visitationRecordInfoUpdate")
+
+    @RequestMapping(value = "visitationRecordInfoUpdate")
     public ModelAndView visitationRecordInfoUpdate(HttpServletRequest request) {
         User u = (User) request.getSession().getAttribute("user");
         String role = (String) request.getSession().getAttribute("role");
 
         String errMsg = "";
 
-        if (request.getParameter("count") == null) {
-            return visitListInfo(request);
-        }
-
         if (request.getParameter("errMsg") != null) {
             errMsg = request.getParameter("errMsg");
+        }
+        if (request.getParameter("count") == null) {
+            request.getSession().setAttribute("errMsg", errMsg);
+            return visitListInfo(request);
         }
 
         int id = Integer.valueOf(request.getParameter("count"));
@@ -99,23 +104,24 @@ public class VisitationRecordController {
         String errMessage;
         ModelAndView m;
         Long id = 0L;
-        VisitationRecord v;
+        VisitationRecord v = new VisitationRecord();
         try {
             id = _v.getId();
             v = vService.getAllVisitationRecord(id);
 
+            //v.setId(_v.getId());
             v.setComments(_v.getComments());
-            v.setDoctorPatient(_v.getDoctorPatient());
+            //v.setDoctorPatient(_v.getDoctorPatient());
             v.setDiagnosis(_v.getDiagnosis());
             v.setEndTime(_v.getEndTime());
-            v.setRevNo(v.getRevNo()+1);
+            v.setRevNo(v.getRevNo() + 1);
             v.setStartTime(_v.getStartTime());
             v.setSurgeryPerformed(_v.getSurgeryPerformed());
             v.setVisitDate(_v.getVisitDate());
             v.setVisitPrescription(_v.getVisitPrescription());
-            
+
             vService.updateVisitationRecord(v);
-            
+
         } catch (Exception e) {
             errMessage = "Error during updating vistation record";
             request.getSession().setAttribute("errMsg", errMessage);
@@ -127,8 +133,7 @@ public class VisitationRecordController {
         return visitationRecordInfoUpdate(request);
 
     }
-    
-    
+
     @RequestMapping(value = "visitationRecordAdd")
     public ModelAndView visitationRecordAdd(HttpServletRequest request) {
         User u = (User) request.getSession().getAttribute("user");
@@ -168,9 +173,9 @@ public class VisitationRecordController {
             v.setSurgeryPerformed(_v.getSurgeryPerformed());
             v.setVisitDate(_v.getVisitDate());
             v.setVisitPrescription(_v.getVisitPrescription());
-            
+
             vService.addVisitationRecord(v);
-           
+
         } catch (Exception e) {
             errMessage = e.getMessage();
             request.getSession().setAttribute("errMsg", errMessage);
@@ -181,5 +186,4 @@ public class VisitationRecordController {
 
     }
 
-   
 }

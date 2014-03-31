@@ -118,7 +118,7 @@
                                 </div>                             
                                 <div class="input-group">
                                     <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                                    <form:input type="text" path="visitPrescription" class="form-control" value="${v.visitPrescription}" />
+                                    <form:input type="text" path="endTime" class="form-control" value="${v.endTime}" />
                                 </div>
                             </div>                                                
                             <div class="col-lg-4" style="padding-top: 5px;">
@@ -159,6 +159,7 @@
                             <div class="input-group">                                
                                 <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
                                 <form:input type="text" path="comments" class="form-control" value="${v.comments}" />
+                                <form:input type="hidden" path="id" class="form-control" value="${v.id}" />
                             </div>                  
                         </div>                             
                 </div>                                
@@ -168,65 +169,9 @@
                 </form:form>
             </div>
         </div>
-    </div>        
+      
 
 
-
-
-
-    <div class="container" id="docPatinfobodyCenter">
-        <div class="col-lg-12">
-            <div class="panel panel-defaut">
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Doctor Username</th>
-                                    <th>Patient Username</th>
-                                    <th>Visit Date</th>
-                                    <th>Revision Number</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                    <th>Visit Prescription ID</th>
-                                    <th>Diagnosis</th>
-                                    <th>Surgery Performed</th>
-                                        <c:if test="${role != patientV}" >
-                                        <th>Comments</td>
-                                        </c:if>
-
-                                </tr>
-                            </thead>
-                            <tbody>  
-                                <c:forEach items="${records}" var = "l" varStatus="loop">
-                                    <tr>
-                                        <td >${l.doctorPatient.doctor.user.username}</td>
-                                        <td >${l.doctorPatient.patient.user.username}</td>                                        
-                                        <td >${l.visitDate}</td>
-                                        <td >${l.revNo}</td>
-                                        <td >${l.startTime}</td>
-                                        <td >${l.endTime}</td>
-                                        <td >${l.visitPrescription.id}</td>
-                                        <td >${l.diagnosis}</td>
-                                        <td >${l.surgeryPerformed}</td>
-                                        <c:if test="${role != patientV}" >
-                                            <td >${l.comments}</td>
-                                        </c:if>
-                                        <td width="10%">
-                                            <form method="post" action = "visitationRecordInfoUpdate.html" >
-                                                <button class="btn btn-lg btn-primary btn-block" type="submit" name="count" value="${l.id}">Edit Visitation Record</button> 
-                                            </form>
-                                        </td>
-
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>                            
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <script src="resources/js/jquery-1.10.2.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/jquery.metisMenu.js"></script>
