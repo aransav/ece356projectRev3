@@ -27,7 +27,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  */
 @Configuration
 @ComponentScan("ca.uw.proj")
-@EnableWebMvc
+//@EnableWebMvc
 @EnableTransactionManagement
 @PropertySource("classpath:project.properties")
 public class ProjectConfig {

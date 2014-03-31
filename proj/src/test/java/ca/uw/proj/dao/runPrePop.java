@@ -28,7 +28,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {ProjectConfig.class})
 @Transactional
 @TransactionConfiguration(defaultRollback = false)
-@Ignore
+//@Ignore
 
 public class runPrePop {
     
