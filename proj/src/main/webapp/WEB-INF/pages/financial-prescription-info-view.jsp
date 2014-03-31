@@ -63,9 +63,9 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Patient User ID</th>
-                                        <th>Total Appointments</th>
-                                        <th>Total Visits</th>
+                                        <th>Prescription Name</th>
+                                        <th>Prescription Description</th>
+                                        <th>Total Times Assigned</th>
                                     </tr>
                                 </thead>
                                 <tbody>  
