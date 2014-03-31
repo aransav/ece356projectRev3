@@ -20,34 +20,19 @@ import java.util.List;
 public interface VisitationService {
 
     public void addVisitationRecord(VisitationRecord visitationRecord);
-
-    public void addVisitationRecord(DoctorPatient doctorPatient,
-            java.sql.Date visitDate,
-            java.sql.Date startTime,
-            java.sql.Date endTime,
-            VisitPrescription visitPrescription,
-            String diagnosis,
-            String comments,
-            String surgeryPerformed
-    );
-
-    public void addVisitationRecord(Staff doctor,
-            Patient patient,
-            java.sql.Date visitDate,
-            java.sql.Date startTime,
-            java.sql.Date endTime,
-            VisitPrescription visitPrescription,
-            String diagnosis,
-            String comments,
-            String surgeryPerformed
-    );
-    
     public void updateVisitationRecord(VisitationRecord visitationRecord);
+    public void removeVisitationRecord(VisitationRecord visitationRecord);
+    
+    
     public List<VisitationRecord> getAllVisitationRecord();
     public List<VisitationRecord> getAllVisitationRecordByPatient(Patient patient);
     public List<VisitationRecord> getAllVisitationRecordByDoctor(Staff doctor);
+    
     public List<VisitationRecord> getAllVisitationRecordByDate(java.sql.Date date);
     public List<VisitationRecord> getAllVisitationRecordByDateRange(java.sql.Date startDate, java.sql.Date endDate);
-    public List<VisitPrescription> getVisitPrescriptions(User u);
+    
+
     public List<VisitationRecord> getAllVisitationRecord(User u);
+    
+    public List<VisitPrescription> getVisitPrescriptions(User u);
 }

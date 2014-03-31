@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ca.uw.proj.service.impl;
 
 import ca.uw.proj.dao.VisitPrescriptionDAO;
@@ -26,10 +25,10 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author siva
  */
-
 @Service
 @Transactional
 public class VisitationServiceImpl implements VisitationService {
+
     @Autowired
     VisitPrescriptionDAO vpDAO;
     @Autowired
@@ -37,22 +36,17 @@ public class VisitationServiceImpl implements VisitationService {
 
     @Override
     public void addVisitationRecord(VisitationRecord visitationRecord) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addVisitationRecord(DoctorPatient doctorPatient, Date visitDate, Date startTime, Date endTime, VisitPrescription visitPrescription, String diagnosis, String comments, String surgeryPerformed) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addVisitationRecord(Staff doctor, Patient patient, Date visitDate, Date startTime, Date endTime, VisitPrescription visitPrescription, String diagnosis, String comments, String surgeryPerformed) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        vrDAO.addVisitationRecord(visitationRecord);
     }
 
     @Override
     public void updateVisitationRecord(VisitationRecord visitationRecord) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        vrDAO.updateVisitationRecord(visitationRecord);
+    }
+
+    @Override
+    public void removeVisitationRecord(VisitationRecord visitationRecord) {
+        vrDAO.removeVisitationRecord(visitationRecord);
     }
 
     @Override
@@ -62,12 +56,26 @@ public class VisitationServiceImpl implements VisitationService {
 
     @Override
     public List<VisitationRecord> getAllVisitationRecordByPatient(Patient patient) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<VisitationRecord> list = getAllVisitationRecord();
+        List<VisitationRecord> result = new ArrayList<>();
+        for (VisitationRecord v : list) {
+            if (v.getDoctorPatient().getPatient().equals(patient)) {
+                result.add(v);
+            }
+        }
+        return result;
     }
 
     @Override
     public List<VisitationRecord> getAllVisitationRecordByDoctor(Staff doctor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<VisitationRecord> list = getAllVisitationRecord();
+        List<VisitationRecord> result = new ArrayList<>();
+        for (VisitationRecord v : list) {
+            if (v.getDoctorPatient().getDoctor().equals(doctor)) {
+                result.add(v);
+            }
+        }
+        return result;
     }
 
     @Override
@@ -83,33 +91,33 @@ public class VisitationServiceImpl implements VisitationService {
     @Override
     public List<VisitPrescription> getVisitPrescriptions(User u) {
         List<VisitationRecord> list = getAllVisitationRecord(u);
-        if (list == null || list.isEmpty()){
+        if (list == null || list.isEmpty()) {
             return new ArrayList<VisitPrescription>();
         }
         List<VisitPrescription> result = new ArrayList<>();
-        for (VisitationRecord v: list){
-            if (v.getVisitPrescription() != null){
+        for (VisitationRecord v : list) {
+            if (v.getVisitPrescription() != null) {
                 result.add(v.getVisitPrescription());
             }
         }
         return result;
-        
+
     }
-    
+
     @Override
-    public List<VisitationRecord> getAllVisitationRecord(User u){
+    public List<VisitationRecord> getAllVisitationRecord(User u) {
         List<VisitationRecord> list = getAllVisitationRecord();
         List<VisitationRecord> result = new ArrayList<>();
-        
-        for (VisitationRecord v: list){
+
+        for (VisitationRecord v : list) {
             Staff staff = v.getDoctorPatient().getDoctor();
             Patient patient = v.getDoctorPatient().getPatient();
-            
-            if (staff.getUser().equals(u) || patient.getUser().equals(u)){
+
+            if (staff.getUser().equals(u) || patient.getUser().equals(u)) {
                 result.add(v);
             }
         }
         return result;
-        
+
     }
 }
