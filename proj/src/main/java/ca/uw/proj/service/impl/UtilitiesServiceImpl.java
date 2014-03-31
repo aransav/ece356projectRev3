@@ -164,8 +164,8 @@ public class UtilitiesServiceImpl implements UtilitiesService {
         Staff s4 = new Staff(); s4.setUser(u4); s4.setRole("staff");
         Staff s5 = new Staff(); s5.setUser(u5); s5.setRole("staff");
         Staff s6 = new Staff(); s6.setUser(u6); s6.setRole("staff");
-        Staff s11 = new Staff(); s11.setUser(u6); s11.setRole("legal");
-        Staff s12 = new Staff(); s12.setUser(u6); s12.setRole("finance");
+        Staff s11 = new Staff(); s11.setUser(u11); s11.setRole("legal");
+        Staff s12 = new Staff(); s12.setUser(u12); s12.setRole("finance");
         
         staffDAO.addStaff(s1);
         staffDAO.addStaff(s2);
