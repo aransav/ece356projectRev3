@@ -24,7 +24,7 @@
                     </li>
                     <li><a href="#"><i class="fa fa-clipboard fa-fw"></i> View Visitation Records</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-medkit fa-fw"></i> View All Legal Prescriptions</a>
+                    <li><a href="doctorPrescriptionInfo.html"><i class="fa fa-medkit fa-fw"></i> View All Legal Prescriptions</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="logoutRefresh.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
