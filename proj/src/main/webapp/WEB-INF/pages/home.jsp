@@ -42,7 +42,7 @@
             </div>
         
         <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button> 
-        <div class="form-group">
+<!--        <div class="form-group">
             <div class="col-md-12 control">
                 <div style="padding-top:15px; font-size:85%" >
                     Don't have an account! 
@@ -61,7 +61,7 @@
                 </a>
                 </div>
             </div>
-        </div>
+        </div>-->
       </form:form>
         
     </div> <!-- /container --> 

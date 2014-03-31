@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Financial View - Patient Summary</title>
+        <title>Edit Visitation Records</title>
         <style type="text/css"> @import url("resources/css/main.css"); </style> 
     </head>
     <body>
@@ -52,7 +52,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header text-center">Financial View - Doctors Summary</h1>
+                <h1 class="page-header text-center">Edit Visitation Records</h1>
             </div>
         </div>
         <div class="container" id="docPatinfobodyCenter">
@@ -68,12 +68,27 @@
                                         <th>Total Visits</th>
                                     </tr>
                                 </thead>
-                                <tbody>              
-                                    <c:forEach items = "${summaryList}" var ="s">
+                                <tbody>  
+                                    <c:forEach items="${records}" var = "l" varStatus="loop">
                                         <tr>
-                                            <td>${s.patient.user.id}</td>
-                                            <td>${s.totalAppointments}</td>
-                                            <td>${s.totalVisits}</td>
+                                            <td width="">${l.doctorPatient.doctor.user.username}</td>
+                                            <td width="">${l.doctorPatient.patient.user.username}</td>                                        
+                                            <td width="">${l.visitDate}</td>
+                                            <td width="">${l.revNo}</td>
+                                            <td width="">${l.startTime}</td>
+                                            <td width="">${l.endTime}</td>
+                                            <td width="">${l.visitPrescription.id}</td>
+                                            <td width="">${l.diagnosis}</td>
+                                            <td width="">${l.surgeryPerformed}</td>
+                                            <c:if test="${role != patientV}" >
+                                                <td width="">${l.comments}</td>
+                                            </c:if>
+                                            <td width="10%">
+                                                <form method="post" action = "visitationRecordInfoUpdate.html" >
+                                                    <button class="btn btn-lg btn-primary btn-block" type="submit" name="count" value="${l.id}">Edit Visitation Record</button> 
+                                                </form>
+                                            </td>
+
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -86,6 +101,6 @@
         <script src="resources/js/jquery-1.10.2.js"></script>
         <script src="resources/js/bootstrap.min.js"></script>
         <script src="resources/js/jquery.metisMenu.js"></script>
-        <script src="resources/js/sb-admin.js"></script> 
+        <script src="resources/js/sb-admin.js"></script>
     </body>
 </html>
