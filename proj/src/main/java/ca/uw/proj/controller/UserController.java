@@ -200,6 +200,7 @@ public class UserController {
                 errMessage1 = "Mapping Already Exisits";
             }
             else if(s1.getRole().equals("doctor")){
+                i = 1;
                 errMessage2 = "You have no defined a doctor";
             }
         }        
@@ -212,10 +213,7 @@ public class UserController {
             dps.addDoctorPatient(d3);
         }
         
-        
         List<DoctorPatient> list2 = dps.getAllDoctorPatientForPatient(s2);
-        
-
         
         ModelAndView m = new ModelAndView();
         m.addObject("role", role);
