@@ -18,7 +18,7 @@
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="userInfoView.html"><i class="fa fa-user fa-fw"></i> View User Profile</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-calendar fa-fw"></i> View Visitation Records</a>
+                    <li><a href="legalALL.html"><i class="fa fa-calendar fa-fw"></i> View Visitation Records</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="logoutRefresh.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
