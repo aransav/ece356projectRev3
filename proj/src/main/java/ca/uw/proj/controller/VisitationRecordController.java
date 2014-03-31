@@ -60,8 +60,9 @@ public class VisitationRecordController {
 
         return m;
     }
-
-    @RequestMapping(value = "visitationRecordInfoUpdate")
+    
+    
+     @RequestMapping(value = "visitationRecordInfoUpdate")
     public ModelAndView visitationRecordInfoUpdate(HttpServletRequest request) {
         User u = (User) request.getSession().getAttribute("user");
         String role = (String) request.getSession().getAttribute("role");
@@ -179,4 +180,6 @@ public class VisitationRecordController {
         return visitListInfo(request);
 
     }
+
+   
 }

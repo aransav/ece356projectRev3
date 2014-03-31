@@ -22,7 +22,7 @@
                     </li>
                     <li><a href="appointmentInfo.html"><i class="fa fa-calendar fa-fw"></i> View Appointments</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-clipboard fa-fw"></i> View Visitation Records</a>
+                    <li><a href="listVisitationRecords.html"><i class="fa fa-clipboard fa-fw"></i> View Visitation Records</a>
                     </li>
                     <li><a href="doctorPrescriptionInfo.html"><i class="fa fa-medkit fa-fw"></i> View All Legal Prescriptions</a>
                     </li>
