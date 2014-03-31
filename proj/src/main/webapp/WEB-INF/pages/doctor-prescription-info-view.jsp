@@ -72,7 +72,6 @@
                                         <tr>
                                             <td>${s.prescription.name}</td>
                                             <td>${s.prescription.description}</td>
-                                    <br/>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
