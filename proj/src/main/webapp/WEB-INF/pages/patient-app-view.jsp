@@ -10,25 +10,88 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Patient Appointment View</title>
         <style type="text/css"> @import url("resources/css/main.css"); </style> 
     </head>
     <body>
-        <!-- add script and header here -->
-        <p>Hello</p>
-        <p>${size}</p>
+        <c:set var="financeV" scope="session" value="finance" />
+        <c:set var="legalV" scope="session" value="legal" />
+        <c:set var="patientV" scope="session" value="patient" />
+        <c:set var="staffV" scope="session" value="staff" />
+        <c:set var="superV" scope="session" value="super" />
+        <c:set var="doctorV" scope="session" value="doctor" />
 
-        <c:forEach items="${appList}" var = "app" >
-        <tr>
-            <td>${app.doctorPatient.patient.user.username}</td>
-            <td>${app.dateOfApp}</td>
-            <td>${app.comments}</td>
-            <td>${app.status}</td>
-            <td>${app.schedLength}</td>
-            <td>${app.procedureDesc}</td>
-        </tr>
-    </c:forEach>
+        <c:if test="${role == financeV}" >
+            <jsp:include page="header-finance.jsp" />
+        </c:if>
+
+        <c:if test="${role == legalV}" >
+            <jsp:include page="header-legal.jsp" />
+        </c:if> 
+
+        <c:if test="${role == patientV}" >
+            <jsp:include page="header-patient.jsp" />
+        </c:if> 
+
+        <c:if test="${role == doctorV}" >
+            <jsp:include page="header-doctor.jsp" />
+        </c:if> 
+
+        <c:if test="${role == staffV}" >
+            <jsp:include page="header-staff.jsp" />
+        </c:if> 
+
+        <c:if test="${role == superV}" >
+            <jsp:include page="header-super.jsp" />
+        </c:if> 
+        
+        <c:if test="${role == null}" >
+            <jsp:include page="header-null.jsp" />
+        </c:if>        
 
 
-</body>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center">Appointment View</h1>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="panel panel-defaut">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Patient User Name</th>
+                                    <th>Date of Appointment</th>
+                                    <th>Comments</th>
+                                    <th>Status</th>
+                                    <th>Scheduled Length</th>
+                                    <th>Procedure Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${appList}" var = "app" >
+                                    <tr>
+                                        <td>${app.doctorPatient.patient.user.username}</td>
+                                        <td>${app.dateOfApp}</td>
+                                        <td>${app.comments}</td>
+                                        <td>${app.status}</td>
+                                        <td>${app.schedLength}</td>
+                                        <td>${app.procedureDesc}</td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="resources/js/jquery-1.10.2.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
+        <script src="resources/js/jquery.metisMenu.js"></script>
+        <script src="resources/js/sb-admin.js"></script>    
+
+    </body>
 </html>

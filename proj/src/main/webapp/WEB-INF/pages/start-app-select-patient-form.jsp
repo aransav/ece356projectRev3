@@ -11,110 +11,189 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Create New Appointment</title>
         <style type="text/css"> @import url("resources/css/main.css"); </style> 
     </head>
     <body>
-        <div style="text-align: left;">
-            <label>${errMessage}</label>
+
+
+        <c:set var="financeV" scope="session" value="finance" />
+        <c:set var="legalV" scope="session" value="legal" />
+        <c:set var="patientV" scope="session" value="patient" />
+        <c:set var="staffV" scope="session" value="staff" />
+        <c:set var="superV" scope="session" value="super" />
+        <c:set var="doctorV" scope="session" value="doctor" />
+
+        <c:if test="${role == financeV}" >
+            <jsp:include page="header-finance.jsp" />
+        </c:if>
+
+        <c:if test="${role == legalV}" >
+            <jsp:include page="header-legal.jsp" />
+        </c:if> 
+
+        <c:if test="${role == patientV}" >
+            <jsp:include page="header-patient.jsp" />
+        </c:if> 
+
+        <c:if test="${role == doctorV}" >
+            <jsp:include page="header-doctor.jsp" />
+        </c:if> 
+
+        <c:if test="${role == staffV}" >
+            <jsp:include page="header-staff.jsp" />
+        </c:if> 
+
+        <c:if test="${role == superV}" >
+            <jsp:include page="header-super.jsp" />
+        </c:if> 
+
+        <c:if test="${role == null}" >
+            <jsp:include page="header-null.jsp" />
+        </c:if>                
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center">Create Appointment</h1>
+            </div>
         </div>
-        <form:form role="form" method="post" commandName="startAppSelectPatient" action = "submitAppSelectPatient.html" >
-            <div class ="row" > <!--Names -->
-                <div class="col-lg-3" style="padding-top: 5px;">
+        <div class="col-lg-12">
+            <div class="panel panel-defaut">
+                <div class="panel-body">
 
                     <div style="text-align: left;">
-                        <label>Doctor First Name</label>
+                        <label>${errMessage}</label>
                     </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="doctor.user.fname" class="form-control" value="${doctor2.user.fname}" />
-                    </div>
-                    <div style="text-align: left;">
-                        <label>Doctor Last Name</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="doctor.user.lname" class="form-control" value="${doctor2.user.lname}" />
-                    </div>
-                    <div style="text-align: left;">
-                        <label>Doctor Id</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="doctor.user.id" class="form-control" value="${doctor2.user.id}" />
-                    </div>
-                </div>
-                <div class="col-lg-4" style="padding-top: 5px;">
-                    <div style="text-align: left;">
-                        <label>Patient First Name</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="patient.user.fname" class="form-control" value="${patient2.user.fname}" />
-                    </div>
-                    <div style="text-align: left;">
-                        <label>Patient Last Name</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="patient.user.lname" class="form-control" value="${patient2.user.lname}" />
-                    </div>
-                    <div style="text-align: left;">
-                        <label>Patient Health Card No</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="patient.healthCardNo" class="form-control" value="${patient2.healthCardNo}" />
-                    </div> 
-                    <div style="text-align: left;">
-                        <label>Patient social Ins No</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="patient.socialInsNo" class="form-control" value="${patient2.socialInsNo}" />
-                    </div> 
-                </div>              
-                <div class="col-lg-5" style="padding-top: 5px;">
-                    <div style="text-align: left;">
-                        <label>DateOfApp</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="dateOfApp" class="form-control" value="" />
-                    </div> 
-                    <div style="text-align: left;">
-                        <label>Comments</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="appointment.comments" class="form-control" value="${appointment2.comments}" />
-                    </div>
-                    <div style="text-align: left;">
-                        <label>Status</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="appointment.status" class="form-control" value="${appointment2.status}" />
-                    </div>
-                    <div style="text-align: left;">
-                        <label>schedLength</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="number" path="appointment.schedLength" class="form-control" value="${appointment2.schedLength}" />
-                    </div>
-                    <div style="text-align: left;">
-                        <label>Procedure Description</label>
-                    </div>
-                    <div class="input-group">
-                        <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
-                            <form:input type="text" path="appointment.procedureDesc" class="form-control" value="${appointment2.procedureDesc}" />
-                    </div>
+                    <form:form role="form" method="post" commandName="startAppSelectPatient" action = "submitAppSelectPatient.html" >
+                        <div class ="row" > 
+                            <div class="col-lg-4" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Doctor's First Name</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="doctor.user.fname" class="form-control" value="${doctor2.user.fname}" />
+                                </div>
+                            </div>                    
+                            <div class="col-lg-4" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Doctor's Last Name</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="doctor.user.lname" class="form-control" value="${doctor2.user.lname}" />
+                                </div>
+                            </div>                    
+                            <div class="col-lg-4" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Doctor's Id</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="doctor.user.id" class="form-control" value="${doctor2.user.id}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class ="row" > 
+                            <div class="col-lg-3" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Patient's First Name</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="patient.user.fname" class="form-control" value="${patient2.user.fname}" />
+                                </div>
+                            </div>
+                            <div class="col-lg-3" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Patient's Last Name</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="patient.user.lname" class="form-control" value="${patient2.user.lname}" />
+                                </div>
+                            </div>
+                            <div class="col-lg-3" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Patient's Health Card No</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="patient.healthCardNo" class="form-control" value="${patient2.healthCardNo}" />
+                                </div>
+                            </div>
+                            <div class="col-lg-3" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Patient's Social Ins No</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="patient.socialInsNo" class="form-control" value="${patient2.socialInsNo}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class ="row" > 
+                            <div class="col-lg-3" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Date Of Appointment</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="dateOfApp" class="form-control" value="" />
+                                </div> 
+                            </div> 
+                            <div class="col-lg-3" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Status</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="appointment.status" class="form-control" value="${appointment2.status}" />
+                                </div>
+                            </div>
+                            <div class="col-lg-3" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Scheduled Length</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="number" path="appointment.schedLength" class="form-control" value="${appointment2.schedLength}" />
+                                </div>
+                            </div>
+                            <div class="col-lg-3" style="padding-top: 5px;">
+                                <div style="text-align: left;">
+                                    <label>Procedure Description</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="appointment.procedureDesc" class="form-control" value="${appointment2.procedureDesc}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12" style="padding-top: 5px;">    
+                                <div style="text-align: left;">
+                                    <label>Comments</label>
+                                </div>
+                                <div class="input-group">
+                                    <span class ="input-group-addon"><i class="fa fa-user" style="width: 10px;"></i></span>
+                                        <form:input type="text" path="appointment.comments" class="form-control" value="${appointment2.comments}" />
+                                </div>                    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding-top: 15px">                
+                                <button class="btn btn-lg btn-primary btn-block" type="submit" >Create Appointment</button> 
+                            </div>
+                        </div>
+                    </form:form>
                 </div>
             </div>
-            <div style="padding-top: 15px">                
-                <button class="btn btn-lg btn-primary btn-block" type="submit" >Save Personal Info</button> 
-            </div>
-        </form:form>
+        </div>
+        <script src="resources/js/jquery-1.10.2.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
+        <script src="resources/js/jquery.metisMenu.js"></script>
+        <script src="resources/js/sb-admin.js"></script>    
+
     </body>
 </html>
